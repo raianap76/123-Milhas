@@ -1,5 +1,5 @@
 # Video
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](<img src="video.PNG" alt="My cool logo"/>)](https://www.loom.com/share/a7d51a4401834b1e800f41055b123a9b)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -127,7 +127,7 @@ return (
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Destino ou IATA, mês, ano "
+            label="Destino ou IATA"
             margin="normal"
             variant="outlined"
             onChange={(e) => {
