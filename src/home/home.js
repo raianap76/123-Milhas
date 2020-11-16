@@ -133,7 +133,7 @@ return (
         return p.id ? (
           <div className="card" key={p.id} data-testid="enterprise-card">
             <div className="logo">
-              <img src={p.imageUrl} alt="321Milhas invertido" />
+              <img src={p.imageUrl} alt="images" />
             </div>
             <div className="description">
               <h1 style={{ gridArea: "city" }}>{p.city}</h1>
