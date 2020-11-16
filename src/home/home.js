@@ -42,13 +42,6 @@ function Home() {
         
         setPackages(filtered);
        
-        
-       if(filterLower ==="") {
-        
-        setPackages(allPackages);
-        
-      }
-
   }
 }
 
@@ -121,9 +114,6 @@ return (
         id="free-solo-demo"
         freeSolo
         options={search}
-        onBlur={(e) => {
-          filterPackages(e.target.value);
-        }}
         renderInput={(params) => (
           <TextField
             {...params}
