@@ -15,7 +15,7 @@ function Home() {
   const [allPackages, setAllPackages] = useState([]);
 
   const filterPackages = (val) => {
-    if (val == "") {
+    if (typeof val !== 'undefined' && val == "") {
       setPackages(allPackages);
     }
     else {
@@ -68,7 +68,7 @@ const searchPackcages = async () => {
 
   // Assumindo que todos os pacotes terão Belo Horizonte como origem.
   flights = flights.data.filter(f => f.departureAirport === "CNF");
-
+  console.log("Primeiro filtro",flights)//Primeiro filtro
 
   // Somando o preço dos hotéis de destino com o preço do voo para montar os pacotes.
   let packages_ = flights.filter(f => {
@@ -76,23 +76,28 @@ const searchPackcages = async () => {
     f.hotel = hotel.name;
     return (f.price += hotel.pricePerNight);
   });
+ console.log("segundo filtro",packages_)
  
   // Separando os pacotes por destino nos respectivos arrays.
   let groupByIataCode = iataCodes.data.map(i => {
     let p = packages_.filter(p => p.arrivalAirport === i.id);
     // Incluindo o nome da cidade e a imgUrl dela.
+    console.log("terceiro filtro",packages_)
     p.filter(p => {
       p.imageUrl = i.imageUrl;
       return (p.city = i.city);
     });
     return p;
+    
   });
+  console.log("linha 93",groupByIataCode)
 
   // Filtrando os pacotes para que apareça apenas um card para cada destino, com o menor preço possível.
   packages_ = groupByIataCode.map(test => {
     let min = test.map(tt => tt.price);
     return test.length ? test.find(t => t.price === Math.min(...min)) : "";
   });
+  console.log("linha 100",packages_)
  
   setPackages(packages_)
   setAllPackages(packages_)
@@ -108,21 +113,24 @@ useEffect(() => {
 return (
   <div>
     <NavBar />
-
     <div className="search" >
       <Autocomplete
         id="free-solo-demo"
         freeSolo
         options={search}
+        onBlur={(e) => {
+          filterPackages(e.target.value);
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
             label="Destino ou IATA"
             margin="normal"
             variant="outlined"
-            onChange={(e) => {
+            onInput={(e) => {
               filterPackages(e.target.value);
             }}
+            
           />
         )}
       />
